@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
+    <title>Poker AI Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Poker AI Assistant</h1>
+        </div>
+        
+        <!-- User Hand Input -->
+        <div class="card-input">
+            <h2>Your Hand</h2>
+            <input type="text" id="card1" placeholder="Card 1 (e.g., AH for Ace of Hearts)" maxlength="2">
+            <input type="text" id="card2" placeholder="Card 2 (e.g., 10S for Ten of Spades)" maxlength="3">
+        </div>
+
+        <!-- Number of Players -->
+        <div class="player-input">
+            <h2>Other Players</h2>
+            <label for="players">Number of Players:</label>
+            <input type="number" id="players" min="1" max="9" value="3">
+        </div>
+
+        <!-- Community Cards Input -->
+        <div class="card-input">
+            <h2>Community Cards</h2>
+            <input type="text" id="communityCard1" placeholder="Card 1 (e.g., KD)" maxlength="2">
+            <input type="text" id="communityCard2" placeholder="Card 2 (e.g., QH)" maxlength="2">
+            <input type="text" id="communityCard3" placeholder="Card 3 (e.g., 9C)" maxlength="2">
+            <input type="text" id="communityCard4" placeholder="Card 4 (optional)" maxlength="2">
+            <input type="text" id="communityCard5" placeholder="Card 5 (optional)" maxlength="2">
+        </div>
+
+        <!-- Analyze Button -->
+        <button onclick="analyzeHand()">Analyze</button>
+
+        <!-- AI Advice Output -->
+        <div id="advice" class="advice-output">
+            <h3>AI Advice</h3>
+            <p id="adviceText">Enter your cards and the number of players to get advice.</p>
+        </div>
+    </div>
+
+    <script>
+        function analyzeHand() {
+            // Get the user's hand
+            const card1 = document.getElementById("card1").value;
+            const card2 = document.getElementById("card2").value;
+
+            // Get the number of players
+            const players = document.getElementById("players").value;
+
+            // Get the community cards
+            const communityCard1 = document.getElementById("communityCard1").value;
+            const communityCard2 = document.getElementById("communityCard2").value;
+            const communityCard3 = document.getElementById("communityCard3").value;
+            const communityCard4 = document.getElementById("communityCard4").value;
+            const communityCard5 = document.getElementById("communityCard5").value;
+
+            // Simple logic to provide advice (this can be expanded later)
+            let advice = "";
+            if (!card1 || !card2) {
+                advice = "Please enter both of your cards.";
+            } else if (parseInt(players) < 2) {
+                advice = "Poker requires at least two players!";
+            } else {
+                advice = `You're playing against ${players} other players. Based on your hand (${card1} and ${card2}) and community cards (${communityCard1} ${communityCard2} ${communityCard3} ${communityCard4} ${communityCard5}), I suggest playing cautiously. More advanced analysis coming soon!`;
+            }
+
+            // Display advice
+            document.getElementById("adviceText").innerText = advice;
+        }
+    </script>
+</body>
+</html>
